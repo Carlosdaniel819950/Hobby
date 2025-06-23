@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens Motivacionais para Ela</title>
+    <style>
+        body {
+            background: #f8f8fc;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 8px 40px 8px;
+        }
+        .titulo {
+            text-align: center;
+            font-size: 1.6em;
+            margin-bottom: 18px;
+            font-weight: bold;
+            color: #b94fc6;
+        }
+        .cartao {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(185,79,198,0.08);
+            margin-bottom: 22px;
+            padding: 18px 16px 14px 16px;
+            transition: box-shadow 0.2s;
+        }
+        .cartao:hover {
+            box-shadow: 0 4px 24px rgba(185,79,198,0.16);
+        }
+        .cartao .subtitulo {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #b94fc6;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .cartao-conteudo {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+        .cartao.ativo .cartao-conteudo {
+            display: block;
+        }
+        .cartao button {
+            background: #b94fc6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: background 0.2s;
+        }
+        .cartao button:hover {
+            background: #a03cae;
+        }
+        .cartao p {
+            margin: 0 0 8px 0;
+            font-size: 1.05em;
+            line-height: 1.5;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px 2px 24px 2px;
+            }
+            .cartao {
+                padding: 14px 8px 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="titulo">🌷 FRASES MOTIVACIONAIS PARA ELA</div>
+        <div class="cartao">
+            <div class="subtitulo">Frases Curtas</div>
+            <button onclick="abrirCartao(this)">Abrir</button>
+            <div class="cartao-conteudo">
+                <p>Você é um mulherão, mesmo nos dias em que esquece disso.</p>
+                <p>A sua luz não depende do céu estar claro — você brilha até nas tempestades.</p>
+                <p>Sonhos grandes moram em corações fortes, e o seu é gigante.</p>
+                <p>O mundo pode tentar te cansar, mas nunca vai conseguir apagar quem você é.</p>
+                <p>Você não é só bonita por fora — sua alma é o que mais encanta.</p>
+                <p>Tudo o que você é, já é mais do que o suficiente. E o mundo ainda não viu tudo o que você pode ser.</p>
+            </div>
+        </div>
+        <div class="cartao">
+            <div class="subtitulo">✨ VERSOS CURTOS E IMPACTANTES</div>
+            <button onclick="abrirCartao(this)">Abrir</button>
+            <div class="cartao-conteudo">
+                <p>Mulher de fibra, de sonho e razão,<br>Anda calada, mas grita no coração.</p>
+                <p>Com olhos de estrela e alma de flor,<br>Trabalha com garra, e espalha amor.</p>
+                <p>Linda sem esforço, gentil por natureza,<br>Carrega no peito uma rara nobreza.</p>
+                <p>Direito é o sonho, e o mundo vai ver:<br>Que ninguém segura quem nasceu pra vencer.</p>
+                <p>Mesmo cansada, ela segue, ela brilha,<br>Porque dentro dela mora uma ilha —<br>De força, ternura, de luz infinita,<br>Essa mulher é rara, é completa, é bonita.</p>
+            </div>
+        </div>
+        <div class="cartao">
+            <div class="subtitulo">💌 POEMA 1 – “MULHERÃO QUE ENCANTA”</div>
+            <button onclick="abrirCartao(this)">Abrir</button>
+            <div class="cartao-conteudo">
+                <p>Você não precisa de capa,<br>Nem de filtros, nem disfarce.<br>Seu sorriso quando acorda<br>Já vence qualquer combate.</p>
+                <p>Você é dessas raras,<br>Que lutam com ternura.<br>Que sonham com Justiça,<br>Mas já vivem a doçura.</p>
+                <p>Faculdade, trabalho, esperança no olhar...<br>Tem gente que cansa com pouco,<br>E você não para de sonhar.</p>
+                <p>Então respira, se olha no espelho,<br>Veja essa mulher de impacto.<br>Mesmo em silêncio e dor,<br>Você já é espetáculo.</p>
+            </div>
+        </div>
+        <div class="cartao">
+            <div class="subtitulo">💌 POEMA 2 – “NA SUA ESSÊNCIA MORA A FORÇA”</div>
+            <button onclick="abrirCartao(this)">Abrir</button>
+            <div class="cartao-conteudo">
+                <p>Se hoje o mundo parece pesado,<br>Lembre que seu coração é forte.<br>Que as fases ruins não são eternas,<br>Mas a sua coragem é o seu norte.</p>
+                <p>Você é linda sem moldura,<br>Tem gentileza na postura.<br>Tem sonho firme, e passo calmo,<br>Tem no peito, um mundo de cura.</p>
+                <p>Você é mulher que inspira,<br>Que trabalha, que não vira as costas.<br>Você é dessas que o tempo admira,<br>E que Deus abençoa em todas as apostas.</p>
+            </div>
+        </div>
+        <div class="cartao">
+            <div class="subtitulo">💌 POEMA 3 – “PARA A MULHER QUE EU ADMIRO”</div>
+            <button onclick="abrirCartao(this)">Abrir</button>
+            <div class="cartao-conteudo">
+                <p>Nem todas as flores exalam perfume.<br>Algumas, como você, exalam alma.<br>E mesmo nos dias nublados,<br>Têm o dom de trazer calma.</p>
+                <p>O seu riso é luz que aquece,<br>Seu jeito é flor que floresce.<br>Mesmo quando a vida pesa,<br>Você é quem permanece.</p>
+                <p>Tem gente que passa pela vida,<br>Você é quem marca o caminho.<br>E quem te tem por perto,<br>Nunca caminha sozinho.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function abrirCartao(btn) {
+            var cartao = btn.closest('.cartao');
+            cartao.classList.toggle('ativo');
+            var aberto = cartao.classList.contains('ativo');
+            btn.textContent = aberto ? 'Fechar' : 'Abrir';
+        }
+    </script>
+</body>
+</html> 
