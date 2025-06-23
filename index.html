@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas Motivacionais para Ela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 60'><polygon points='35,5 5,20 65,20' fill='%23e9c6f7' stroke='%23b94fc6' stroke-width='2'/><rect x='5' y='20' width='60' height='30' rx='4' fill='white' stroke='%23b94fc6' stroke-width='2'/><polyline points='5,20 35,45 65,20' fill='none' stroke='%23b94fc6' stroke-width='2'/></svg>">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f8fc 0%, #f3e6fa 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 24px 8px 40px 8px;
+        }
+        .titulo {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 24px;
+            font-weight: 700;
+            color: #b94fc6;
+            letter-spacing: 1px;
+        }
+        .carta {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(185,79,198,0.10);
+            margin-bottom: 28px;
+            padding: 22px 16px 18px 16px;
+            transition: box-shadow 0.2s;
+            text-align: center;
+            position: relative;
+        }
+        .carta:hover {
+            box-shadow: 0 8px 32px rgba(185,79,198,0.18);
+        }
+        .carta .subtitulo {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #b94fc6;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+        }
+        .envelope {
+            width: 80px;
+            height: 68px;
+            margin: 0 auto 14px auto;
+            display: block;
+            position: relative;
+            perspective: 120px;
+        }
+        .envelope .flap {
+            transform-origin: bottom center;
+            transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+        }
+        .carta.ativa .envelope .flap {
+            transform: rotateX(70deg);
+        }
+        .carta-conteudo {
+            display: none;
+            animation: fadeIn 0.5s;
+            margin-top: 16px;
+        }
+        .carta.ativa .carta-conteudo {
+            display: block;
+        }
+        .carta button {
+            background: linear-gradient(90deg, #b94fc6 60%, #e9c6f7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 1.08em;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 8px;
+            margin-top: 10px;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(185,79,198,0.08);
+        }
+        .carta button:hover {
+            background: linear-gradient(90deg, #a03cae 60%, #d1a6e7 100%);
+            color: #fff;
+        }
+        .carta p {
+            margin: 0 0 10px 0;
+            font-size: 1.12em;
+            line-height: 1.7;
+        }
+        footer {
+            text-align: center;
+            color: #b94fc6;
+            font-size: 0.98em;
+            margin-top: 32px;
+            opacity: 0.7;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px 2px 24px 2px;
+            }
+            .carta {
+                padding: 14px 6px 10px 6px;
+            }
+            .envelope {
+                width: 56px;
+                height: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="titulo">🌷 CARTAS MOTIVACIONAIS PARA ELA</div>
+        <div class="carta">
+            <div class="subtitulo">💌 Carta 1 – "Você é um mulherão!"</div>
+            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+            </svg>
+            <button onclick="abrirCarta(this)">Abrir carta</button>
+            <div class="carta-conteudo">
+                <p>Querida,</p>
+                <p>Se algum dia você esquecer o quanto é incrível, lembre-se: você é um mulherão, mesmo nos dias em que duvida de si mesma. Sua luz não depende do céu estar claro — você brilha até nas tempestades. O mundo pode tentar te cansar, mas nunca vai conseguir apagar quem você é. Sonhos grandes moram em corações fortes, e o seu é gigante. Tudo o que você é, já é mais do que o suficiente. E o mundo ainda não viu tudo o que você pode ser. Continue sendo essa mulher de alma bonita, que encanta por dentro e por fora.</p>
+                <p>Com carinho,</p>
+                <p>Alguém que te admira</p>
+            </div>
+        </div>
+        <div class="carta">
+            <div class="subtitulo">💌 Carta 2 – "Versos para uma mulher de fibra"</div>
+            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+            </svg>
+            <button onclick="abrirCarta(this)">Abrir carta</button>
+            <div class="carta-conteudo">
+                <p>Mulher de fibra, de sonho e razão,<br>
+                Anda calada, mas grita no coração.<br>
+                Com olhos de estrela e alma de flor,<br>
+                Trabalha com garra, e espalha amor.<br><br>
+                Linda sem esforço, gentil por natureza,<br>
+                Carrega no peito uma rara nobreza.<br>
+                Direito é o sonho, e o mundo vai ver:<br>
+                Que ninguém segura quem nasceu pra vencer.<br><br>
+                Mesmo cansada, você segue, você brilha,<br>
+                Porque dentro de você mora uma ilha —<br>
+                De força, ternura, de luz infinita,<br>
+                Você é rara, é completa, é bonita.</p>
+            </div>
+        </div>
+        <div class="carta">
+            <div class="subtitulo">💌 Carta 3 – "Mulherão que encanta"</div>
+            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+            </svg>
+            <button onclick="abrirCarta(this)">Abrir carta</button>
+            <div class="carta-conteudo">
+                <p>Você não precisa de capa, nem de filtros, nem disfarce. Seu sorriso quando acorda já vence qualquer combate. Você é dessas raras, que lutam com ternura, que sonham com justiça, mas já vivem a doçura. Faculdade, trabalho, esperança no olhar... Tem gente que cansa com pouco, e você não para de sonhar. Então respira, se olha no espelho, veja essa mulher de impacto. Mesmo em silêncio e dor, você já é espetáculo.</p>
+            </div>
+        </div>
+        <div class="carta">
+            <div class="subtitulo">💌 Carta 4 – "Na sua essência mora a força"</div>
+            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+            </svg>
+            <button onclick="abrirCarta(this)">Abrir carta</button>
+            <div class="carta-conteudo">
+                <p>Se hoje o mundo parece pesado, lembre que seu coração é forte. As fases ruins não são eternas, mas a sua coragem é o seu norte. Você é linda sem moldura, tem gentileza na postura, sonho firme e passo calmo. No peito, um mundo de cura. Você é mulher que inspira, que trabalha, que não vira as costas. Você é dessas que o tempo admira, e que Deus abençoa em todas as apostas.</p>
+            </div>
+        </div>
+        <div class="carta">
+            <div class="subtitulo">💌 Carta 5 – "Para a mulher que eu admiro"</div>
+            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+            </svg>
+            <button onclick="abrirCarta(this)">Abrir carta</button>
+            <div class="carta-conteudo">
+                <p>Nem todas as flores exalam perfume. Algumas, como você, exalam alma. E mesmo nos dias nublados, têm o dom de trazer calma. O seu riso é luz que aquece, seu jeito é flor que floresce. Mesmo quando a vida pesa, você é quem permanece. Tem gente que passa pela vida, você é quem marca o caminho. E quem te tem por perto, nunca caminha sozinho.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        Feito com carinho &copy; 2024 | <a href="https://github.com/" style="color:#b94fc6;text-decoration:underline;">GitHub Pages</a>
+    </footer>
+    <script>
+        function abrirCarta(btn) {
+            var carta = btn.closest('.carta');
+            carta.classList.toggle('ativa');
+            var aberta = carta.classList.contains('ativa');
+            btn.textContent = aberta ? 'Fechar carta' : 'Abrir carta';
+        }
+    </script>
+</body>
+</html> 
