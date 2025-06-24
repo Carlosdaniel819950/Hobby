@@ -191,15 +191,6 @@
     </style>
 </head>
 <body>
-    <button id="btn-admin-login" style="position:fixed;top:18px;right:18px;background:var(--cinza-carta);color:var(--roxo-principal);border:1.5px solid var(--lilas);border-radius:8px;padding:7px 18px;font-weight:700;z-index:1000;cursor:pointer;box-shadow:0 2px 8px rgba(185,79,198,0.10);">Login Admin</button>
-    <div id="popup-admin" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,40,0.55);z-index:2000;align-items:center;justify-content:center;">
-        <div style="background:var(--cinza-carta);padding:32px 24px 24px 24px;border-radius:16px;box-shadow:0 4px 24px rgba(185,79,198,0.18);max-width:320px;margin:auto;">
-            <h2 style="color:var(--roxo-principal);font-size:1.2em;text-align:center;margin-bottom:18px;">Login de Administrador</h2>
-            <input type="password" id="senha-popup" placeholder="Senha de admin" style="width:100%;padding:10px;margin-bottom:16px;border-radius:8px;border:1.5px solid var(--lilas);background:var(--cinza-medio);color:var(--texto-principal);font-size:1em;">
-            <button onclick="fazerLoginAdminPopup()" style="width:100%;background:linear-gradient(90deg,var(--roxo-principal) 60%,var(--lilas) 100%);color:var(--branco);border:none;border-radius:8px;padding:10px 0;font-size:1.08em;font-weight:700;">Entrar</button>
-            <button onclick="fecharPopupAdmin()" style="width:100%;margin-top:10px;background:none;color:var(--roxo-principal);border:none;font-weight:700;">Cancelar</button>
-        </div>
-    </div>
     <div id="popup-carta-lida" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,40,0.55);z-index:3000;align-items:center;justify-content:center;">
         <div style="background:var(--cinza-carta);padding:32px 24px 24px 24px;border-radius:16px;box-shadow:0 4px 24px rgba(185,79,198,0.18);max-width:320px;margin:auto;">
             <h2 style="color:var(--roxo-principal);font-size:1.1em;text-align:center;margin-bottom:18px;">Esta carta já foi aberta.</h2>
@@ -736,7 +727,7 @@
                 document.querySelectorAll('.carta').forEach(function(carta) {
                     carta.style.background = '#fff';
                     carta.style.color = '#23232b';
-                    carta.style.borderColor = '#e9c6f7';
+                    carta.style.borderColor = carta.classList.contains('lida') ? '#111' : '#e9c6f7';
                 });
                 document.querySelector('footer').style.color = '#b94fc6';
             } else {
@@ -749,27 +740,9 @@
                 document.querySelectorAll('.carta').forEach(function(carta) {
                     carta.style.background = '#2d2d3a';
                     carta.style.color = '#f7f7fa';
-                    carta.style.borderColor = '#e9c6f7';
+                    carta.style.borderColor = carta.classList.contains('lida') ? '#fff' : '#e9c6f7';
                 });
                 document.querySelector('footer').style.color = '#e9c6f7';
-            }
-        }
-
-        // Login admin popup
-        document.getElementById('btn-admin-login').onclick = function() {
-            document.getElementById('popup-admin').style.display = 'flex';
-            document.getElementById('senha-popup').value = '';
-        };
-        function fecharPopupAdmin() {
-            document.getElementById('popup-admin').style.display = 'none';
-        }
-        function fazerLoginAdminPopup() {
-            var senha = document.getElementById('senha-popup').value;
-            if (senha === 'MariaIsabel11.') {
-                localStorage.setItem('admin', '1');
-                window.location.href = 'adicionar.html';
-            } else {
-                alert('Senha incorreta!');
             }
         }
 
@@ -810,7 +783,9 @@
 
         // CSS extra para cartas lidas e destaque
         var style = document.createElement('style');
-        style.innerHTML = `.carta.lida { border-color: #fff !important; box-shadow: 0 0 0 2px #fff6; opacity: 0.85; }
+        style.innerHTML = `
+        .carta.lida { border-color: #fff !important; box-shadow: 0 0 0 2px #fff6; opacity: 0.85; transition: border-color 0.3s; }
+        .tema-claro .carta.lida { border-color: #111 !important; box-shadow: 0 0 0 2px #1113; }
         .carta.destaque-scroll { animation: destaqueScroll 1.2s; }
         @keyframes destaqueScroll { 0%{box-shadow:0 0 0 6px #fff9;} 100%{box-shadow:0 0 0 2px #fff6;} }`;
         document.head.appendChild(style);
