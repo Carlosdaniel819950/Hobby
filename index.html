@@ -200,460 +200,473 @@
             <button onclick="fecharPopupAdmin()" style="width:100%;margin-top:10px;background:none;color:var(--roxo-principal);border:none;font-weight:700;">Cancelar</button>
         </div>
     </div>
+    <div id="popup-carta-lida" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,40,0.55);z-index:3000;align-items:center;justify-content:center;">
+        <div style="background:var(--cinza-carta);padding:32px 24px 24px 24px;border-radius:16px;box-shadow:0 4px 24px rgba(185,79,198,0.18);max-width:320px;margin:auto;">
+            <h2 style="color:var(--roxo-principal);font-size:1.1em;text-align:center;margin-bottom:18px;">Esta carta já foi aberta.</h2>
+            <p style="color:var(--texto-principal);text-align:center;margin-bottom:18px;">Deseja continuar de onde parou ou ir para a próxima carta não lida?</p>
+            <button onclick="continuarDeOndeParou()" style="width:100%;background:linear-gradient(90deg,var(--roxo-principal) 60%,var(--lilas) 100%);color:var(--branco);border:none;border-radius:8px;padding:10px 0;font-size:1.08em;font-weight:700;margin-bottom:10px;">Continuar de onde parei</button>
+            <button onclick="irParaProximaCarta()" style="width:100%;background:linear-gradient(90deg,var(--roxo-escuro) 60%,var(--roxo-principal) 100%);color:var(--lilas);border:none;border-radius:8px;padding:10px 0;font-size:1.08em;font-weight:700;">Ir para próxima não lida</button>
+        </div>
+    </div>
     <div class="container">
         <div class="titulo">🌷 CARTAS FEITAS POR MIM</div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 1</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Querida,</p>
-                <p>Se algum dia você esquecer o quanto é incrível, lembre-se: você é um mulherão, mesmo nos dias em que duvida de si mesma. Sua luz não depende do céu estar claro — você brilha até nas tempestades. O mundo pode tentar te cansar, mas nunca vai conseguir apagar quem você é. Sonhos grandes moram em corações fortes, e o seu é gigante. Tudo o que você é, já é mais do que o suficiente. E o mundo ainda não viu tudo o que você pode ser. Continue sendo essa mulher de alma bonita, que encanta por dentro e por fora.</p>
-                <p>Com carinho,</p>
-                <p>Alguém que te admira</p>
+        <div id="cartas-fixas">
+            <div class="carta" data-idx="0">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 1</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Querida,</p>
+                    <p>Se algum dia você esquecer o quanto é incrível, lembre-se: você é um mulherão, mesmo nos dias em que duvida de si mesma. Sua luz não depende do céu estar claro — você brilha até nas tempestades. O mundo pode tentar te cansar, mas nunca vai conseguir apagar quem você é. Sonhos grandes moram em corações fortes, e o seu é gigante. Tudo o que você é, já é mais do que o suficiente. E o mundo ainda não viu tudo o que você pode ser. Continue sendo essa mulher de alma bonita, que encanta por dentro e por fora.</p>
+                    <p>Com carinho,</p>
+                    <p>Alguém que te admira</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="1">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 2</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Mulher de fibra, de sonho e razão,<br>
+                    Anda calada, mas grita no coração.<br>
+                    Com olhos de estrela e alma de flor,<br>
+                    Trabalha com garra, e espalha amor.<br><br>
+                    Linda sem esforço, gentil por natureza,<br>
+                    Carrega no peito uma rara nobreza.<br>
+                    Direito é o sonho, e o mundo vai ver:<br>
+                    Que ninguém segura quem nasceu pra vencer.<br><br>
+                    Mesmo cansada, você segue, você brilha,<br>
+                    Porque dentro de você mora uma ilha —<br>
+                    De força, ternura, de luz infinita,<br>
+                    Você é rara, é completa, é bonita.</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="2">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 3</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Você não precisa de capa, nem de filtros, nem disfarce. Seu sorriso quando acorda já vence qualquer combate. Você é dessas raras, que lutam com ternura, que sonham com justiça, mas já vivem a doçura. Faculdade, trabalho, esperança no olhar... Tem gente que cansa com pouco, e você não para de sonhar. Então respira, se olha no espelho, veja essa mulher de impacto. Mesmo em silêncio e dor, você já é espetáculo.</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="3">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 4</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Se hoje o mundo parece pesado, lembre que seu coração é forte. As fases ruins não são eternas, mas a sua coragem é o seu norte. Você é linda sem moldura, tem gentileza na postura, sonho firme e passo calmo. No peito, um mundo de cura. Você é mulher que inspira, que trabalha, que não vira as costas. Você é dessas que o tempo admira, e que Deus abençoa em todas as apostas.</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="4">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 5</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Nem todas as flores exalam perfume. Algumas, como você, exalam alma. E mesmo nos dias nublados, têm o dom de trazer calma. O seu riso é luz que aquece, seu jeito é flor que floresce. Mesmo quando a vida pesa, você é quem permanece. Tem gente que passa pela vida, você é quem marca o caminho. E quem te tem por perto, nunca caminha sozinho.</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="5">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 6</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Aprendi da forma mais dura<br>
+                    que o amor não é pra todos.<br>
+                    Não é pra muitos.<br>
+                    Muitos querem…<br>
+                    mas poucos, de fato, amam.<br>
+                    E entre esses poucos,<br>
+                    menos ainda ficam.<br>
+                    Menos ainda apoiam.<br>
+                    Menos ainda cuidam.</p>
+                    <p>Descobri que há mil jeitos de amar:<br>
+                    tem quem ame em silêncio,<br>
+                    quem ame sendo bobo,<br>
+                    quem ame sendo rude,<br>
+                    mas nunca deixe de amar.<br>
+                    Tem quem ame com intensidade,<br>
+                    todo dia um pouco mais,<br>
+                    sem medir palavras,<br>
+                    sem esconder gestos,<br>
+                    com tudo o que há no peito.</p>
+                    <p>Também aprendi que tem gente<br>
+                    que só quer se aproveitar,<br>
+                    usar, sugar, e depois ir embora<br>
+                    como se teu coração fosse descartável.<br>
+                    Mas eu…<br>
+                    eu tô aqui.<br>
+                    Não sei bem como ajudar,<br>
+                    mas estou.<br>
+                    Mesmo sem jeito.<br>
+                    Mesmo sem manual.</p>
+                    <p>Já amei demais,<br>
+                    já vivi amores intensos,<br>
+                    alguns foram lindos,<br>
+                    outros deixaram cicatrizes.<br>
+                    E, por estranho que pareça,<br>
+                    nunca fui eu quem terminou,<br>
+                    nunca fui eu quem escolheu ir embora.<br>
+                    Mas também nunca fui escolhido<br>
+                    de verdade.</p>
+                    <p>E mesmo assim, amei.<br>
+                    Amei aos poucos,<br>
+                    conforme conhecia cada detalhe.<br>
+                    Amei como quem escreve poemas<br>
+                    sem usar papel,<br>
+                    como quem manda cartas<br>
+                    sem precisar selos.<br>
+                    Porque meu amor…<br>
+                    meu amor é desses<br>
+                    que se sente no ar,<br>
+                    que se guarda na pele,<br>
+                    que não se esquece.</p>
+                    <p>Talvez por isso,<br>
+                    nunca fui esquecido.<br>
+                    Porque quando amo,<br>
+                    eu marco.<br>
+                    Porque quando amo,<br>
+                    eu dou tudo.<br>
+                    Mas tenho medo.<br>
+                    Medo de dar de novo<br>
+                    e acabar vazio.<br>
+                    Medo de confiar<br>
+                    e ver tudo desabar.</p>
+                    <p>A forma mais triste de perder o interesse<br>
+                    é quando a confiança morre.<br>
+                    E comigo,<br>
+                    ela já morreu algumas vezes.</p>
+                    <p>Mas, se um dia eu escolher alguém,<br>
+                    e esse alguém me escolher também,<br>
+                    prometo:<br>
+                    ela será a mulher mais feliz desse mundo.<br>
+                    Porque quem for escolhida,<br>
+                    vai ter um amor sincero,<br>
+                    inteiro, intenso,<br>
+                    verdadeiro.<br>
+                    E não vai precisar pedir,<br>
+                    implorar ou duvidar.</p>
+                    <p>Esse sou eu,<br>
+                    ainda com o coração cheio,<br>
+                    mesmo depois de tanto ter sido quebrado.<br>
+                    Ainda acreditando,<br>
+                    ainda esperando,<br>
+                    por alguém que fique.</p>
+                    <p>– De alguém que sabe amar,<br>
+                    mas cansou de amar sozinho</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="6">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 7</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Para cada fim, há sempre um novo despertar,<br>
+                    E você, mulher linda, nasceu pra iluminar.<br>
+                    Carrega no peito a força de um luar,<br>
+                    E no olhar, a calma que faz o mundo parar.</p>
+                    <p>É serena, mas seu brilho é presença,<br>
+                    Uma beleza que vibra em silêncio e essência.<br>
+                    Teu sorriso é farol, tua alma é canção,<br>
+                    Tua luz acende paz no meio da escuridão.</p>
+                    <p>Conheço a dor que um dia te tocou,<br>
+                    Mas sei da flor que dela brotou.<br>
+                    No chão mais frio, você floresceu —<br>
+                    Mulher recomeço, poema que Deus escreveu.</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="7">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 8</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Nos detalhes do teu riso, nos gestos tão teus,<br>
+                    Te admiro em silêncio, como quem fala com Deus.<br>
+                    Tens coragem nos passos, firmeza no olhar,<br>
+                    Cada gesto teu me ensina a amar.</p>
+                    <p>Tua presença é brisa que acalma o sofrer,<br>
+                    Tua voz é luar que me faz renascer.<br>
+                    Desculpa se insisto em sempre te ver —<br>
+                    É que aos olhos certos, é fácil te entender.</p>
+                    <p>E se me quiser, eu juro, estou aqui,<br>
+                    Pra te dar abrigo, pra dividir por ti.<br>
+                    Dois passos unidos, sem medo, sem nó —<br>
+                    Porque a vida, contigo, nunca será só.</p>
+                </div>
+            </div>
+            <div class="carta" data-idx="8">
+                <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                    <span class="svg-rosa">
+                        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                            <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                            <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                        </svg>
+                    </span>
+                    <span class="svg-sol" style="display:none">
+                        <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                            <g stroke="#f9d923" stroke-width="2">
+                                <line x1="19" y1="2" x2="19" y2="10"/>
+                                <line x1="19" y1="28" x2="19" y2="36"/>
+                                <line x1="2" y1="19" x2="10" y2="19"/>
+                                <line x1="28" y1="19" x2="36" y2="19"/>
+                                <line x1="7" y1="7" x2="13" y2="13"/>
+                                <line x1="25" y1="25" x2="31" y2="31"/>
+                                <line x1="7" y1="31" x2="13" y2="25"/>
+                                <line x1="25" y1="13" x2="31" y2="7"/>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <div class="subtitulo">💌 Carta 9</div>
+                <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                    <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                    <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+                </svg>
+                <button onclick="abrirCarta(this)">Abrir carta</button>
+                <div class="carta-conteudo">
+                    <p>Sonhas alto, quer Justiça viver,<br>
+                    E eu sorrio só de te ouvir dizer.<br>
+                    Em teus olhos arde um desejo real:<br>
+                    Transformar o mundo — fazer o bem ser normal.</p>
+                    <p>És capaz, e disso jamais duvidei,<br>
+                    Já és gigante, mesmo antes do que sonhei.<br>
+                    Vai vencer, construir, com alma e razão,<br>
+                    Cada sonho guardado no teu coração.</p>
+                    <p>Se me permitires, quero ser teu chão,<br>
+                    Te aplaudir de pé, nas vitórias e na aflição.<br>
+                    E quando pintares teu céu de manhã,<br>
+                    Estarei ao teu lado — contigo</p>
+                </div>
             </div>
         </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 2</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Mulher de fibra, de sonho e razão,<br>
-                Anda calada, mas grita no coração.<br>
-                Com olhos de estrela e alma de flor,<br>
-                Trabalha com garra, e espalha amor.<br><br>
-                Linda sem esforço, gentil por natureza,<br>
-                Carrega no peito uma rara nobreza.<br>
-                Direito é o sonho, e o mundo vai ver:<br>
-                Que ninguém segura quem nasceu pra vencer.<br><br>
-                Mesmo cansada, você segue, você brilha,<br>
-                Porque dentro de você mora uma ilha —<br>
-                De força, ternura, de luz infinita,<br>
-                Você é rara, é completa, é bonita.</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 3</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Você não precisa de capa, nem de filtros, nem disfarce. Seu sorriso quando acorda já vence qualquer combate. Você é dessas raras, que lutam com ternura, que sonham com justiça, mas já vivem a doçura. Faculdade, trabalho, esperança no olhar... Tem gente que cansa com pouco, e você não para de sonhar. Então respira, se olha no espelho, veja essa mulher de impacto. Mesmo em silêncio e dor, você já é espetáculo.</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 4</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Se hoje o mundo parece pesado, lembre que seu coração é forte. As fases ruins não são eternas, mas a sua coragem é o seu norte. Você é linda sem moldura, tem gentileza na postura, sonho firme e passo calmo. No peito, um mundo de cura. Você é mulher que inspira, que trabalha, que não vira as costas. Você é dessas que o tempo admira, e que Deus abençoa em todas as apostas.</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 5</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Nem todas as flores exalam perfume. Algumas, como você, exalam alma. E mesmo nos dias nublados, têm o dom de trazer calma. O seu riso é luz que aquece, seu jeito é flor que floresce. Mesmo quando a vida pesa, você é quem permanece. Tem gente que passa pela vida, você é quem marca o caminho. E quem te tem por perto, nunca caminha sozinho.</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 6</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Aprendi da forma mais dura<br>
-                que o amor não é pra todos.<br>
-                Não é pra muitos.<br>
-                Muitos querem…<br>
-                mas poucos, de fato, amam.<br>
-                E entre esses poucos,<br>
-                menos ainda ficam.<br>
-                Menos ainda apoiam.<br>
-                Menos ainda cuidam.</p>
-                <p>Descobri que há mil jeitos de amar:<br>
-                tem quem ame em silêncio,<br>
-                quem ame sendo bobo,<br>
-                quem ame sendo rude,<br>
-                mas nunca deixe de amar.<br>
-                Tem quem ame com intensidade,<br>
-                todo dia um pouco mais,<br>
-                sem medir palavras,<br>
-                sem esconder gestos,<br>
-                com tudo o que há no peito.</p>
-                <p>Também aprendi que tem gente<br>
-                que só quer se aproveitar,<br>
-                usar, sugar, e depois ir embora<br>
-                como se teu coração fosse descartável.<br>
-                Mas eu…<br>
-                eu tô aqui.<br>
-                Não sei bem como ajudar,<br>
-                mas estou.<br>
-                Mesmo sem jeito.<br>
-                Mesmo sem manual.</p>
-                <p>Já amei demais,<br>
-                já vivi amores intensos,<br>
-                alguns foram lindos,<br>
-                outros deixaram cicatrizes.<br>
-                E, por estranho que pareça,<br>
-                nunca fui eu quem terminou,<br>
-                nunca fui eu quem escolheu ir embora.<br>
-                Mas também nunca fui escolhido<br>
-                de verdade.</p>
-                <p>E mesmo assim, amei.<br>
-                Amei aos poucos,<br>
-                conforme conhecia cada detalhe.<br>
-                Amei como quem escreve poemas<br>
-                sem usar papel,<br>
-                como quem manda cartas<br>
-                sem precisar selos.<br>
-                Porque meu amor…<br>
-                meu amor é desses<br>
-                que se sente no ar,<br>
-                que se guarda na pele,<br>
-                que não se esquece.</p>
-                <p>Talvez por isso,<br>
-                nunca fui esquecido.<br>
-                Porque quando amo,<br>
-                eu marco.<br>
-                Porque quando amo,<br>
-                eu dou tudo.<br>
-                Mas tenho medo.<br>
-                Medo de dar de novo<br>
-                e acabar vazio.<br>
-                Medo de confiar<br>
-                e ver tudo desabar.</p>
-                <p>A forma mais triste de perder o interesse<br>
-                é quando a confiança morre.<br>
-                E comigo,<br>
-                ela já morreu algumas vezes.</p>
-                <p>Mas, se um dia eu escolher alguém,<br>
-                e esse alguém me escolher também,<br>
-                prometo:<br>
-                ela será a mulher mais feliz desse mundo.<br>
-                Porque quem for escolhida,<br>
-                vai ter um amor sincero,<br>
-                inteiro, intenso,<br>
-                verdadeiro.<br>
-                E não vai precisar pedir,<br>
-                implorar ou duvidar.</p>
-                <p>Esse sou eu,<br>
-                ainda com o coração cheio,<br>
-                mesmo depois de tanto ter sido quebrado.<br>
-                Ainda acreditando,<br>
-                ainda esperando,<br>
-                por alguém que fique.</p>
-                <p>– De alguém que sabe amar,<br>
-                mas cansou de amar sozinho</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 7</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Para cada fim, há sempre um novo despertar,<br>
-                E você, mulher linda, nasceu pra iluminar.<br>
-                Carrega no peito a força de um luar,<br>
-                E no olhar, a calma que faz o mundo parar.</p>
-                <p>É serena, mas seu brilho é presença,<br>
-                Uma beleza que vibra em silêncio e essência.<br>
-                Teu sorriso é farol, tua alma é canção,<br>
-                Tua luz acende paz no meio da escuridão.</p>
-                <p>Conheço a dor que um dia te tocou,<br>
-                Mas sei da flor que dela brotou.<br>
-                No chão mais frio, você floresceu —<br>
-                Mulher recomeço, poema que Deus escreveu.</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 8</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Nos detalhes do teu riso, nos gestos tão teus,<br>
-                Te admiro em silêncio, como quem fala com Deus.<br>
-                Tens coragem nos passos, firmeza no olhar,<br>
-                Cada gesto teu me ensina a amar.</p>
-                <p>Tua presença é brisa que acalma o sofrer,<br>
-                Tua voz é luar que me faz renascer.<br>
-                Desculpa se insisto em sempre te ver —<br>
-                É que aos olhos certos, é fácil te entender.</p>
-                <p>E se me quiser, eu juro, estou aqui,<br>
-                Pra te dar abrigo, pra dividir por ti.<br>
-                Dois passos unidos, sem medo, sem nó —<br>
-                Porque a vida, contigo, nunca será só.</p>
-            </div>
-        </div>
-        <div class="carta">
-            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
-                <span class="svg-rosa">
-                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
-                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
-                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
-                    </svg>
-                </span>
-                <span class="svg-sol" style="display:none">
-                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
-                        <g stroke="#f9d923" stroke-width="2">
-                            <line x1="19" y1="2" x2="19" y2="10"/>
-                            <line x1="19" y1="28" x2="19" y2="36"/>
-                            <line x1="2" y1="19" x2="10" y2="19"/>
-                            <line x1="28" y1="19" x2="36" y2="19"/>
-                            <line x1="7" y1="7" x2="13" y2="13"/>
-                            <line x1="25" y1="25" x2="31" y2="31"/>
-                            <line x1="7" y1="31" x2="13" y2="25"/>
-                            <line x1="25" y1="13" x2="31" y2="7"/>
-                        </g>
-                    </svg>
-                </span>
-            </button>
-            <div class="subtitulo">💌 Carta 9</div>
-            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
-                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
-                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
-            </svg>
-            <button onclick="abrirCarta(this)">Abrir carta</button>
-            <div class="carta-conteudo">
-                <p>Sonhas alto, quer Justiça viver,<br>
-                E eu sorrio só de te ouvir dizer.<br>
-                Em teus olhos arde um desejo real:<br>
-                Transformar o mundo — fazer o bem ser normal.</p>
-                <p>És capaz, e disso jamais duvidei,<br>
-                Já és gigante, mesmo antes do que sonhei.<br>
-                Vai vencer, construir, com alma e razão,<br>
-                Cada sonho guardado no teu coração.</p>
-                <p>Se me permitires, quero ser teu chão,<br>
-                Te aplaudir de pé, nas vitórias e na aflição.<br>
-                E quando pintares teu céu de manhã,<br>
-                Estarei ao teu lado — contigo</p>
-            </div>
+        <div id="cartas-dinamicas">
+            <!-- Cartas dinâmicas serão carregadas aqui -->
         </div>
     </div>
     <footer>
@@ -662,9 +675,51 @@
     <script>
         function abrirCarta(btn) {
             var carta = btn.closest('.carta');
+            var idx = carta.dataset.idx ? Number(carta.dataset.idx) : null;
+            var abertaAntes = idx !== null && isCartaLida(idx);
             carta.classList.toggle('ativa');
             var aberta = carta.classList.contains('ativa');
             btn.textContent = aberta ? 'Fechar carta' : 'Abrir carta';
+            if (aberta && idx !== null) {
+                marcarCartaLida(idx);
+                carta.classList.add('lida');
+                if (abertaAntes) {
+                    mostrarPopupCartaLida(idx);
+                }
+            }
+        }
+
+        function mostrarPopupCartaLida(idxAtual) {
+            window.idxCartaAtual = idxAtual;
+            document.getElementById('popup-carta-lida').style.display = 'flex';
+        }
+
+        function fecharPopupCartaLida() {
+            document.getElementById('popup-carta-lida').style.display = 'none';
+        }
+
+        function continuarDeOndeParou() {
+            fecharPopupCartaLida();
+            let cartaAlvo = Array.from(document.querySelectorAll('.carta')).find(c => Number(c.dataset.idx) === window.idxCartaAtual);
+            if (cartaAlvo) {
+                cartaAlvo.scrollIntoView({behavior:'smooth', block:'center'});
+                cartaAlvo.classList.add('destaque-scroll');
+                setTimeout(()=>cartaAlvo.classList.remove('destaque-scroll'), 2000);
+            }
+        }
+
+        function irParaProximaCarta() {
+            fecharPopupCartaLida();
+            let lidas = JSON.parse(localStorage.getItem('cartasLidas') || '[]');
+            let todas = Array.from(document.querySelectorAll('.carta'));
+            let proxima = todas.find(c => !lidas.includes(Number(c.dataset.idx)));
+            if (proxima) {
+                proxima.scrollIntoView({behavior:'smooth', block:'center'});
+                proxima.classList.add('destaque-scroll');
+                setTimeout(()=>proxima.classList.remove('destaque-scroll'), 2000);
+            } else {
+                alert('Você já leu todas as cartas!');
+            }
         }
 
         function abrirTemaBranco(el) {
@@ -717,6 +772,48 @@
                 alert('Senha incorreta!');
             }
         }
+
+        // Sistema de leitura: marcar cartas abertas e continuar de onde parou
+        function marcarCartaLida(idx) {
+            let lidas = JSON.parse(localStorage.getItem('cartasLidas') || '[]');
+            if (!lidas.includes(idx)) {
+                lidas.push(idx);
+                localStorage.setItem('cartasLidas', JSON.stringify(lidas));
+            }
+        }
+        function isCartaLida(idx) {
+            let lidas = JSON.parse(localStorage.getItem('cartasLidas') || '[]');
+            return lidas.includes(idx);
+        }
+
+        // Conta quantas cartas fixas existem
+        var cartasFixasCount = document.querySelectorAll('#cartas-fixas .carta').length;
+
+        // Ao carregar, perguntar se quer continuar de onde parou
+        window.addEventListener('DOMContentLoaded', function() {
+            let lidas = JSON.parse(localStorage.getItem('cartasLidas') || '[]');
+            let todasCartas = document.querySelectorAll('.carta');
+            if (lidas.length > 0) {
+                let ultima = Math.max.apply(null, lidas);
+                setTimeout(function() {
+                    if (confirm('Você já leu algumas cartas. Deseja continuar de onde parou?')) {
+                        let cartaAlvo = Array.from(todasCartas).find(c => Number(c.dataset.idx) === ultima);
+                        if (cartaAlvo) {
+                            cartaAlvo.scrollIntoView({behavior:'smooth', block:'center'});
+                            cartaAlvo.classList.add('destaque-scroll');
+                            setTimeout(()=>cartaAlvo.classList.remove('destaque-scroll'), 2000);
+                        }
+                    }
+                }, 400);
+            }
+        });
+
+        // CSS extra para cartas lidas e destaque
+        var style = document.createElement('style');
+        style.innerHTML = `.carta.lida { border-color: #fff !important; box-shadow: 0 0 0 2px #fff6; opacity: 0.85; }
+        .carta.destaque-scroll { animation: destaqueScroll 1.2s; }
+        @keyframes destaqueScroll { 0%{box-shadow:0 0 0 6px #fff9;} 100%{box-shadow:0 0 0 2px #fff6;} }`;
+        document.head.appendChild(style);
     </script>
 </body>
 </html> 
