@@ -7,48 +7,98 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 60'><polygon points='35,5 5,20 65,20' fill='%23e9c6f7' stroke='%23b94fc6' stroke-width='2'/><rect x='5' y='20' width='60' height='30' rx='4' fill='white' stroke='%23b94fc6' stroke-width='2'/><polyline points='5,20 35,45 65,20' fill='none' stroke='%23b94fc6' stroke-width='2'/></svg>">
     <style>
+        :root {
+            --roxo-principal: #b94fc6;
+            --roxo-escuro: #7a2e8a;
+            --lilas: #e9c6f7;
+            --cinza-escuro: #23232b;
+            --cinza-medio: #353545;
+            --cinza-claro: #444455;
+            --cinza-carta: #2d2d3a;
+            --branco: #fff;
+            --texto-principal: #f7f7fa;
+            --texto-carta: #f7f7fa;
+            --sombra: 0 4px 24px rgba(185,79,198,0.13);
+        }
         body {
-            background: linear-gradient(135deg, #f8f8fc 0%, #f3e6fa 100%);
+            background: linear-gradient(135deg, var(--cinza-escuro) 0%, var(--cinza-claro) 100%);
             font-family: 'Montserrat', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #222;
+            color: var(--texto-principal);
+            min-height: 100vh;
+            transition: background 0.5s, color 0.5s;
         }
         .container {
-            max-width: 480px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 24px 8px 40px 8px;
+            padding: 32px 12px 48px 12px;
         }
         .titulo {
             text-align: center;
-            font-size: 2em;
-            margin-bottom: 24px;
-            font-weight: 700;
-            color: #b94fc6;
-            letter-spacing: 1px;
+            font-size: 2.2em;
+            margin-bottom: 32px;
+            font-weight: 800;
+            color: var(--roxo-principal);
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(185,79,198,0.10);
         }
         .carta {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px rgba(185,79,198,0.10);
-            margin-bottom: 28px;
-            padding: 22px 16px 18px 16px;
-            transition: box-shadow 0.2s;
+            background: var(--cinza-carta);
+            border-radius: 20px;
+            box-shadow: var(--sombra);
+            margin-bottom: 32px;
+            padding: 26px 18px 20px 18px;
+            transition: box-shadow 0.25s, transform 0.18s;
             text-align: center;
             position: relative;
+            color: var(--texto-carta);
+            border: 2px solid var(--lilas);
+            transition: background 0.5s, color 0.5s, border 0.5s;
         }
         .carta:hover {
-            box-shadow: 0 8px 32px rgba(185,79,198,0.18);
+            box-shadow: 0 8px 32px rgba(185,79,198,0.22);
+            transform: translateY(-2px) scale(1.012);
+            border-color: var(--roxo-principal);
         }
         .carta .subtitulo {
-            font-size: 1.15em;
+            font-size: 1.18em;
             font-weight: 700;
-            color: #b94fc6;
-            margin-bottom: 10px;
+            color: var(--roxo-escuro);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             justify-content: center;
+        }
+        .selo-rosa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            margin-right: 8px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .selo-rosa:active {
+            transform: scale(1.1);
+        }
+        .selo-rosa svg {
+            width: 38px;
+            height: 38px;
+            display: block;
+        }
+        .selo-sol {
+            animation: girarSol 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes girarSol {
+            0% { transform: rotate(-180deg) scale(0.5); opacity: 0; }
+            60% { transform: rotate(20deg) scale(1.1); opacity: 1; }
+            100% { transform: rotate(0deg) scale(1); opacity: 1; }
         }
         .envelope {
             width: 80px;
@@ -68,41 +118,52 @@
         .carta-conteudo {
             display: none;
             animation: fadeIn 0.5s;
-            margin-top: 16px;
+            margin-top: 18px;
         }
         .carta.ativa .carta-conteudo {
             display: block;
         }
         .carta button {
-            background: linear-gradient(90deg, #b94fc6 60%, #e9c6f7 100%);
-            color: #fff;
+            background: linear-gradient(90deg, var(--roxo-principal) 60%, var(--lilas) 100%);
+            color: var(--branco);
             border: none;
             border-radius: 8px;
-            padding: 10px 22px;
+            padding: 10px 26px;
             font-size: 1.08em;
             font-family: 'Montserrat', Arial, sans-serif;
             font-weight: 700;
             cursor: pointer;
             margin-bottom: 8px;
             margin-top: 10px;
-            transition: background 0.2s, color 0.2s;
-            box-shadow: 0 2px 8px rgba(185,79,198,0.08);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(185,79,198,0.10);
         }
         .carta button:hover {
-            background: linear-gradient(90deg, #a03cae 60%, #d1a6e7 100%);
-            color: #fff;
+            background: linear-gradient(90deg, var(--roxo-escuro) 60%, var(--roxo-principal) 100%);
+            color: var(--lilas);
+            box-shadow: 0 4px 16px rgba(185,79,198,0.18);
         }
         .carta p {
-            margin: 0 0 10px 0;
-            font-size: 1.12em;
-            line-height: 1.7;
+            margin: 0 0 12px 0;
+            font-size: 1.13em;
+            line-height: 1.8;
         }
         footer {
             text-align: center;
-            color: #b94fc6;
-            font-size: 0.98em;
-            margin-top: 32px;
-            opacity: 0.7;
+            color: var(--lilas);
+            font-size: 1em;
+            margin-top: 40px;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+            transition: color 0.5s;
+        }
+        footer a {
+            color: var(--roxo-principal);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: var(--roxo-escuro);
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -119,14 +180,54 @@
                 width: 56px;
                 height: 44px;
             }
+            .selo-rosa {
+                width: 28px;
+                height: 28px;
+                font-size: 0.85em;
+                top: -12px;
+                right: -12px;
+            }
         }
     </style>
 </head>
 <body>
+    <button id="btn-admin-login" style="position:fixed;top:18px;right:18px;background:var(--cinza-carta);color:var(--roxo-principal);border:1.5px solid var(--lilas);border-radius:8px;padding:7px 18px;font-weight:700;z-index:1000;cursor:pointer;box-shadow:0 2px 8px rgba(185,79,198,0.10);">Login Admin</button>
+    <div id="popup-admin" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,40,0.55);z-index:2000;align-items:center;justify-content:center;">
+        <div style="background:var(--cinza-carta);padding:32px 24px 24px 24px;border-radius:16px;box-shadow:0 4px 24px rgba(185,79,198,0.18);max-width:320px;margin:auto;">
+            <h2 style="color:var(--roxo-principal);font-size:1.2em;text-align:center;margin-bottom:18px;">Login de Administrador</h2>
+            <input type="password" id="senha-popup" placeholder="Senha de admin" style="width:100%;padding:10px;margin-bottom:16px;border-radius:8px;border:1.5px solid var(--lilas);background:var(--cinza-medio);color:var(--texto-principal);font-size:1em;">
+            <button onclick="fazerLoginAdminPopup()" style="width:100%;background:linear-gradient(90deg,var(--roxo-principal) 60%,var(--lilas) 100%);color:var(--branco);border:none;border-radius:8px;padding:10px 0;font-size:1.08em;font-weight:700;">Entrar</button>
+            <button onclick="fecharPopupAdmin()" style="width:100%;margin-top:10px;background:none;color:var(--roxo-principal);border:none;font-weight:700;">Cancelar</button>
+        </div>
+    </div>
     <div class="container">
-        <div class="titulo">🌷 CARTAS MOTIVACIONAIS PARA ELA</div>
+        <div class="titulo">🌷 CARTAS FEITAS POR MIM</div>
         <div class="carta">
-            <div class="subtitulo">💌 Carta 1 – "Você é um mulherão!"</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 1</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -141,7 +242,31 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">💌 Carta 2 – "Versos para uma mulher de fibra"</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 2</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -164,7 +289,31 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">💌 Carta 3 – "Mulherão que encanta"</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 3</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -176,7 +325,31 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">💌 Carta 4 – "Na sua essência mora a força"</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 4</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -188,7 +361,31 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">💌 Carta 5 – "Para a mulher que eu admiro"</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 5</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -200,7 +397,149 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">💌 Poema 1 – Recomeço com Luz</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 6</div>
+            <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
+                <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
+                <polyline points="5,20 35,45 65,20" fill="none" stroke="#b94fc6" stroke-width="2"/>
+            </svg>
+            <button onclick="abrirCarta(this)">Abrir carta</button>
+            <div class="carta-conteudo">
+                <p>Aprendi da forma mais dura<br>
+                que o amor não é pra todos.<br>
+                Não é pra muitos.<br>
+                Muitos querem…<br>
+                mas poucos, de fato, amam.<br>
+                E entre esses poucos,<br>
+                menos ainda ficam.<br>
+                Menos ainda apoiam.<br>
+                Menos ainda cuidam.</p>
+                <p>Descobri que há mil jeitos de amar:<br>
+                tem quem ame em silêncio,<br>
+                quem ame sendo bobo,<br>
+                quem ame sendo rude,<br>
+                mas nunca deixe de amar.<br>
+                Tem quem ame com intensidade,<br>
+                todo dia um pouco mais,<br>
+                sem medir palavras,<br>
+                sem esconder gestos,<br>
+                com tudo o que há no peito.</p>
+                <p>Também aprendi que tem gente<br>
+                que só quer se aproveitar,<br>
+                usar, sugar, e depois ir embora<br>
+                como se teu coração fosse descartável.<br>
+                Mas eu…<br>
+                eu tô aqui.<br>
+                Não sei bem como ajudar,<br>
+                mas estou.<br>
+                Mesmo sem jeito.<br>
+                Mesmo sem manual.</p>
+                <p>Já amei demais,<br>
+                já vivi amores intensos,<br>
+                alguns foram lindos,<br>
+                outros deixaram cicatrizes.<br>
+                E, por estranho que pareça,<br>
+                nunca fui eu quem terminou,<br>
+                nunca fui eu quem escolheu ir embora.<br>
+                Mas também nunca fui escolhido<br>
+                de verdade.</p>
+                <p>E mesmo assim, amei.<br>
+                Amei aos poucos,<br>
+                conforme conhecia cada detalhe.<br>
+                Amei como quem escreve poemas<br>
+                sem usar papel,<br>
+                como quem manda cartas<br>
+                sem precisar selos.<br>
+                Porque meu amor…<br>
+                meu amor é desses<br>
+                que se sente no ar,<br>
+                que se guarda na pele,<br>
+                que não se esquece.</p>
+                <p>Talvez por isso,<br>
+                nunca fui esquecido.<br>
+                Porque quando amo,<br>
+                eu marco.<br>
+                Porque quando amo,<br>
+                eu dou tudo.<br>
+                Mas tenho medo.<br>
+                Medo de dar de novo<br>
+                e acabar vazio.<br>
+                Medo de confiar<br>
+                e ver tudo desabar.</p>
+                <p>A forma mais triste de perder o interesse<br>
+                é quando a confiança morre.<br>
+                E comigo,<br>
+                ela já morreu algumas vezes.</p>
+                <p>Mas, se um dia eu escolher alguém,<br>
+                e esse alguém me escolher também,<br>
+                prometo:<br>
+                ela será a mulher mais feliz desse mundo.<br>
+                Porque quem for escolhida,<br>
+                vai ter um amor sincero,<br>
+                inteiro, intenso,<br>
+                verdadeiro.<br>
+                E não vai precisar pedir,<br>
+                implorar ou duvidar.</p>
+                <p>Esse sou eu,<br>
+                ainda com o coração cheio,<br>
+                mesmo depois de tanto ter sido quebrado.<br>
+                Ainda acreditando,<br>
+                ainda esperando,<br>
+                por alguém que fique.</p>
+                <p>– De alguém que sabe amar,<br>
+                mas cansou de amar sozinho</p>
+            </div>
+        </div>
+        <div class="carta">
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 7</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -223,7 +562,31 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">✨ Poema 2 – Aos Olhos Certos</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 8</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -246,7 +609,31 @@
             </div>
         </div>
         <div class="carta">
-            <div class="subtitulo">✨ Poema 3 – Sonhos de Justiça</div>
+            <button class="selo-rosa" onclick="abrirTemaBranco(this)" title="Clique para mudar o tema">
+                <span class="svg-rosa">
+                    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="15" fill="#fff0f6"/>
+                        <path d="M19 8 Q21 4 25 8 Q29 12 25 16 Q21 20 19 16 Q17 20 13 16 Q9 12 13 8 Q17 4 19 8 Z" fill="#e94f7a" stroke="#b94fc6" stroke-width="1.5"/>
+                        <ellipse cx="19" cy="19" rx="7" ry="10" fill="#fff0f6" opacity="0.5"/>
+                    </svg>
+                </span>
+                <span class="svg-sol" style="display:none">
+                    <svg class="selo-sol" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="19" cy="19" r="10" fill="#ffe066" stroke="#f9d923" stroke-width="2"/>
+                        <g stroke="#f9d923" stroke-width="2">
+                            <line x1="19" y1="2" x2="19" y2="10"/>
+                            <line x1="19" y1="28" x2="19" y2="36"/>
+                            <line x1="2" y1="19" x2="10" y2="19"/>
+                            <line x1="28" y1="19" x2="36" y2="19"/>
+                            <line x1="7" y1="7" x2="13" y2="13"/>
+                            <line x1="25" y1="25" x2="31" y2="31"/>
+                            <line x1="7" y1="31" x2="13" y2="25"/>
+                            <line x1="25" y1="13" x2="31" y2="7"/>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <div class="subtitulo">💌 Carta 9</div>
             <svg class="envelope" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="flap" points="35,5 5,20 65,20" fill="#e9c6f7" stroke="#b94fc6" stroke-width="2"/>
                 <rect x="5" y="20" width="60" height="30" rx="4" fill="#fff" stroke="#b94fc6" stroke-width="2"/>
@@ -270,7 +657,7 @@
         </div>
     </div>
     <footer>
-        Feito com carinho &copy; 2024 | <a href="https://github.com/" style="color:#b94fc6;text-decoration:underline;">GitHub Pages</a>
+        Feito com carinho Carlos Daniel; 2024 | <a href="https://github.com/" style="color:#b94fc6;text-decoration:underline;">GitHub Pages</a>
     </footer>
     <script>
         function abrirCarta(btn) {
@@ -278,6 +665,57 @@
             carta.classList.toggle('ativa');
             var aberta = carta.classList.contains('ativa');
             btn.textContent = aberta ? 'Fechar carta' : 'Abrir carta';
+        }
+
+        function abrirTemaBranco(el) {
+            var rosa = el.querySelector('.svg-rosa');
+            var sol = el.querySelector('.svg-sol');
+            var isClaro = document.body.classList.toggle('tema-claro');
+            if (isClaro) {
+                if (rosa && sol) {
+                    rosa.style.display = 'none';
+                    sol.style.display = 'inline-block';
+                }
+                document.body.style.background = '#fff';
+                document.body.style.color = '#23232b';
+                document.querySelectorAll('.carta').forEach(function(carta) {
+                    carta.style.background = '#fff';
+                    carta.style.color = '#23232b';
+                    carta.style.borderColor = '#e9c6f7';
+                });
+                document.querySelector('footer').style.color = '#b94fc6';
+            } else {
+                if (rosa && sol) {
+                    rosa.style.display = 'inline-block';
+                    sol.style.display = 'none';
+                }
+                document.body.style.background = 'linear-gradient(135deg, #23232b 0%, #444455 100%)';
+                document.body.style.color = '#f7f7fa';
+                document.querySelectorAll('.carta').forEach(function(carta) {
+                    carta.style.background = '#2d2d3a';
+                    carta.style.color = '#f7f7fa';
+                    carta.style.borderColor = '#e9c6f7';
+                });
+                document.querySelector('footer').style.color = '#e9c6f7';
+            }
+        }
+
+        // Login admin popup
+        document.getElementById('btn-admin-login').onclick = function() {
+            document.getElementById('popup-admin').style.display = 'flex';
+            document.getElementById('senha-popup').value = '';
+        };
+        function fecharPopupAdmin() {
+            document.getElementById('popup-admin').style.display = 'none';
+        }
+        function fazerLoginAdminPopup() {
+            var senha = document.getElementById('senha-popup').value;
+            if (senha === 'MariaIsabel11.') {
+                localStorage.setItem('admin', '1');
+                window.location.href = 'adicionar.html';
+            } else {
+                alert('Senha incorreta!');
+            }
         }
     </script>
 </body>

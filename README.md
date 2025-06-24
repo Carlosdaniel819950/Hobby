@@ -1,4 +1,4 @@
-# Cartas Motivacionais para Ela
+# Cartas Feitas por Mim.
 
 Este é um site responsivo com cartas motivacionais para mulheres, feito em HTML, CSS e JavaScript, pronto para ser publicado no **GitHub Pages**.
 
